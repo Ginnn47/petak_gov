@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "578282277969",
+    "project_id": "pmobpetakgov",
+    "storage_bucket": "pmobpetakgov.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578282277969:android:b464b9313ad03ac7e53c70",
+        "android_client_info": {
+          "package_name": "com.example.pmob_petakgov"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp66QC6_nL7IqNg1jlHSNeNRp0If-RUrc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
