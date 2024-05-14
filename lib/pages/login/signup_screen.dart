@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pmob_petakgov/firebase_auth_implementation/firebase_auth_service.dart';
 import 'package:pmob_petakgov/misc/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:pmob_petakgov/pages/login/login_screen.dart';
 import 'package:pmob_petakgov/pages/login/succes_login_screen.dart';
 import 'package:pmob_petakgov/widgets/custom_button.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -16,11 +15,11 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final FireBaseAuthService _auth = FireBaseAuthService();
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
-  bool _isRememberMe = true;
+  final bool _isRememberMe = true;
 
   @override
   void dispose() {
@@ -31,10 +30,6 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   FireBaseAuthService auth = FireBaseAuthService();
-
-  void _signup(String email, password, username) {
-    auth.signUpWithEmailAndPassword(email, password, username);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +96,20 @@ class _SignupScreenState extends State<SignupScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => const SuccessLoginScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                    color: AppColors.starColor,
+                    textColor: Colors.black,
+                    text: "Sign In",
+                    onPress: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
                         ),
                       );
                     },

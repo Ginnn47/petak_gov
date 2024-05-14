@@ -4,10 +4,12 @@ import 'package:pmob_petakgov/misc/colors.dart';
 import 'package:pmob_petakgov/pages/login/login_page.dart';
 
 class ResponsiveButton extends StatelessWidget {
-  bool? isResponsive;
-  double? width;
-  ResponsiveButton({Key? key, this.width, this.isResponsive = false})
-      : super(key: key);
+  final bool? isResponsive;
+  final double? width;
+
+  const ResponsiveButton({super.key, this.width, this.isResponsive = false});
+
+  // Rest of the code..
 
   @override
   Widget build(BuildContext context) {

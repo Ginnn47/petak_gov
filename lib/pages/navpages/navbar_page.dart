@@ -14,10 +14,10 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   List pages = [
-    HomePage(),
+    const HomePage(),
     BookmarksPage(),
     SearchPage(),
-    mypage(),
+    const mypage(),
   ];
   int currentIndex = 0;
   void onTap(int index) {
@@ -43,10 +43,12 @@ class _MainPageState extends State<MainPage> {
         showSelectedLabels: true,
         elevation: 0,
         items: [
-          BottomNavigationBarItem(label: "Home", icon: Icon(Icons.apps)),
-          BottomNavigationBarItem(label: "See", icon: Icon(Icons.star)),
-          BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
-          BottomNavigationBarItem(label: "Support", icon: Icon(Icons.person)),
+          const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.apps)),
+          const BottomNavigationBarItem(label: "See", icon: Icon(Icons.star)),
+          const BottomNavigationBarItem(
+              label: "Search", icon: Icon(Icons.search)),
+          const BottomNavigationBarItem(
+              label: "Support", icon: Icon(Icons.person)),
         ],
       ),
     );

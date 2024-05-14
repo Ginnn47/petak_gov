@@ -1,25 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmob_petakgov/misc/colors.dart';
-import 'package:provider/provider.dart';
-import 'package:pmob_petakgov/misc/provider/bookmark_model.dart';
+import 'package:pmob_petakgov/models/search.dart';
 
-class BookmarksPage extends StatefulWidget {
+class BookmarksPage extends ConsumerStatefulWidget {
+  const BookmarksPage({super.key});
+
   @override
-  _BookmarksPageState createState() => _BookmarksPageState();
+  ConsumerState<BookmarksPage> createState() => _BookmarksPageState();
 }
 
-class _BookmarksPageState extends State<BookmarksPage> {
+class _BookmarksPageState extends ConsumerState<BookmarksPage> {
   @override
   Widget build(BuildContext context) {
-    var bookmarkBloc = Provider.of<BookmarkBloc>(context);
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -38,13 +38,13 @@ class _BookmarksPageState extends State<BookmarksPage> {
                         shape: BoxShape.circle,
                         color: AppColors.mainColor.withOpacity(0.3),
                       ),
-                      padding: EdgeInsets.all(10),
-                      child: Icon(CupertinoIcons.chevron_back),
+                      padding: const EdgeInsets.all(10),
+                      child: const Icon(CupertinoIcons.chevron_back),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
+                const Padding(
+                  padding: EdgeInsets.only(right: 16.0),
                   child: Text(
                     'List of Favorite User',
                     style: TextStyle(
@@ -55,9 +55,9 @@ class _BookmarksPageState extends State<BookmarksPage> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               height: 250,
               decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.5),
@@ -71,22 +71,33 @@ class _BookmarksPageState extends State<BookmarksPage> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            ListView.builder(
-              itemCount: bookmarkBloc.items.length,
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(bookmarkBloc.items[index].title),
-                  subtitle: Text(bookmarkBloc.items[index].subTitle),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      bookmarkBloc.removeItem(index);
+            const SizedBox(height: 20),
+            StreamBuilder<List<Search>>(
+              stream: Search.getFavoriteSearches(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(snapshot.data![index].title),
+                        subtitle: Text(snapshot.data![index].subtitle),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            // Implementasi logika untuk menghapus item
+                          },
+                        ),
+                      );
                     },
-                  ),
-                );
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
               },
             ),
           ],

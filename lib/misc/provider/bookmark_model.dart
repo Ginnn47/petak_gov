@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pmob_petakgov/misc/provider/items_model.dart';
+import 'package:pmob_petakgov/models/search.dart';
 
 class BookmarkBloc with ChangeNotifier {
   int _count = 0;
-  List<ItemModel> items = [];
+  List<Search> items = [];
 
-  StreamController<int> _countController = StreamController<int>();
+  final StreamController<int> _countController = StreamController<int>();
   Stream<int> get countStream => _countController.stream;
 
   void addCount() {
@@ -15,7 +15,7 @@ class BookmarkBloc with ChangeNotifier {
     notifyListeners();
   }
 
-  void addItems(ItemModel data) {
+  void addItems(Search data) {
     items.add(data);
     notifyListeners();
   }
@@ -30,11 +30,13 @@ class BookmarkBloc with ChangeNotifier {
 
   int get count => _count;
 
-  List<ItemModel> get itemsList {
+  List<Search> get itemsList {
     return items;
   }
 
+  @override
   void dispose() {
+    super.dispose();
     _countController.close();
   }
 }

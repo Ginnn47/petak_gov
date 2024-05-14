@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pmob_petakgov/firebase_auth_implementation/firebase_auth_service.dart';
 import 'package:pmob_petakgov/misc/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:pmob_petakgov/pages/login/signup_screen.dart';
 import 'package:pmob_petakgov/pages/login/succes_login_screen.dart';
 import 'package:pmob_petakgov/widgets/custom_button.dart';
 
@@ -15,8 +16,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final FireBaseAuthService _auth = FireBaseAuthService();
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   bool _isRememberMe = true;
 
@@ -103,6 +104,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => const SuccessLoginScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                    color: AppColors.starColor,
+                    textColor: Colors.black,
+                    text: "Sign Up",
+                    onPress: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignupScreen(),
                         ),
                       );
                     },

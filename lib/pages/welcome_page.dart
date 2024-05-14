@@ -85,10 +85,11 @@ class _WelcomePageState extends State<WelcomePage> {
                           width: 7,
                           height: index == indexDots ? 25 : 8,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: index == indexDots
-                                  ? AppColors.mainColor
-                                  : AppColors.mainColor.withOpacity(0.4)),
+                            borderRadius: BorderRadius.circular(8),
+                            color: index == indexDots
+                                ? AppColors.mainColor
+                                : AppColors.mainColor.withOpacity(0.4),
+                          ),
                         );
                       },
                     ),
