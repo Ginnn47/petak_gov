@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmob_petakgov/misc/colors.dart';
 import 'package:pmob_petakgov/models/search.dart';
 import 'package:pmob_petakgov/pages/navpages/bookmarks_page.dart';
-import 'package:pmob_petakgov/pages/navpages/form_item_page.dart';
+import 'package:pmob_petakgov/pages/navpages/detail_form_page.dart';
+import 'package:pmob_petakgov/pages/navpages/create_form_page.dart';
 
 class SearchPage extends ConsumerStatefulWidget {
   const SearchPage({super.key});
@@ -53,7 +54,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const FormItem(),
+              builder: (context) => const CreateForm(),
             ),
           );
         },
@@ -132,6 +133,14 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                               ),
                               onTap: () {
                                 // Tindakan yang ingin Anda lakukan ketika ListTile ditekan
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailForm(
+                                      uid: item.id,
+                                    ),
+                                  ),
+                                );
                               },
                               title: Text(item.title),
                               subtitle: Text(item.subtitle),

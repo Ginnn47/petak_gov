@@ -66,4 +66,18 @@ class Search extends ChangeNotifier {
       }).toList();
     });
   }
+
+  static Stream<Search> getSearchById(String id) {
+    return FirebaseFirestore.instance
+        .collection('searches')
+        .doc(id)
+        .snapshots()
+        .map((doc) {
+      return Search.fromDocument(doc);
+    });
+  }
+
+  static Future<void> deleteSearch(String id) async {
+    await FirebaseFirestore.instance.collection('searches').doc(id).delete();
+  }
 }
